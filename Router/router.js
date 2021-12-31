@@ -1,14 +1,24 @@
+const Customer = require("../Model/Customer");
+const Rider = require("../Model/Rider");
+const { createNewAdmin, adminGetController } = require("./AdminController");
+const { createNewCustomerController, allCustomerGetController } = require("./customerRouter");
+const { riderCreateController, allRiderGetController } = require("./riderRouter");
+
+const router = require("express").Router();
+
+router.get("/", (req, res) => {
+  res.send("This is your home page");
+});
+
+router.get("/rider", allRiderGetController)
+router.post("/rider", riderCreateController );
 
 
+router.get("/customer", allCustomerGetController)
+router.post("/customer", createNewCustomerController);
 
-const router = require('express').Router();
+router.get("/admin", adminGetController)
 
-router.get('/', (req, res)=>{
-    res.send('This is your home page')
-})
-
-router.post('/', (req, res)=>{
-    res.send('Post is connected')
-})
+router.post("/admin", createNewAdmin)
 
 module.exports = router;

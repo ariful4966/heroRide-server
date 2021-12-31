@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 
-const customerSchema = new Schema(
+const adminSchema = new Schema(
   {
     name: {
       type: String,
@@ -13,15 +13,7 @@ const customerSchema = new Schema(
       trim: true,
       required: true,
     },
-    age: {
-      type: Number,
-      trim: true,
-      required: true,
-    },
-    address: {
-      type: String,
-      required: true
-    },
+   
     phone: {
       type: String,
       trim: true,
@@ -33,19 +25,15 @@ const customerSchema = new Schema(
       type: String,
       required: true
     },
-    nidPic: {
-      type: String,
-      required: true
-    },
-   
+  
     password: {
       type: String,
       trim: true,
       required: true
     },
-    vihicalType: {
+    adminType: {
       type: String,
-      enum: ["car", "bike"],
+      enum: ["admin", "developer"],
       required: true
     },
   },
@@ -54,6 +42,6 @@ const customerSchema = new Schema(
   }
 );
 
-const Customer = model("Customer", customerSchema);
+const Admin = model("Admin", adminSchema);
 
-module.exports = Customer;
+module.exports = Admin;
