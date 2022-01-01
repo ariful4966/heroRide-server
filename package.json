@@ -4,7 +4,13 @@
   "main": "server.js",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "engines": {
+    "node": "16.13.0",
+    "yarn": "1.22.17",
+    "npm": "8.1.0"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",

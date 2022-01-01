@@ -53,6 +53,6 @@ app.get("/", (req, res) => {
   app.post("/admin/login", adminLoginCoroller )
 
 
-app.listen(4000, ()=>{
-    console.log('Server is Running on port 4000');
+app.listen(process.env.PORT, ()=>{
+    console.log('Server is Running on port '+ process.env.PORT);
 })
