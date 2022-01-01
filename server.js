@@ -19,8 +19,10 @@ app.use(cors())
 app.use(express.static('uploads'))
 app.use(fileUpload())
 
+const MongoDB =`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.2rcqo.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 
-mongoose.connect('mongodb://localhost:27017/heroRide',()=>{
+
+mongoose.connect(MongoDB,()=>{
     console.log(`Database Coonnection Successfully`)
 
     
