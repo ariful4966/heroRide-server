@@ -2,6 +2,7 @@ const Rider = require("../Model/Rider");
 const fs = require("fs-extra");
 const imageToBase64 = require("image-to-base64");
 const { response } = require("express");
+const { imgBase64 } = require("../utilities/imageBase64");
 
 module.exports.riderCreateController = async (req, res) => {
   try {
@@ -23,19 +24,7 @@ module.exports.riderCreateController = async (req, res) => {
       password,
     } = req.body;
 
-    function imgBase64(file) {
-      const newImg = file.data;
-      const encImg = newImg.toString("base64");
-      const mainImg = `data:${file.mimetype};base64,`+ encImg
-
-      // const image = {
-      //   contentType: file.mimetype,
-      //   size: file.size,
-      //   img: Buffer.from(encImg, "base64"),
-      // };
-
-      return mainImg;
-    }
+    
 
     const extRider = await Rider.findOne({
       $or: [{ email: req.body.email }, { phone: req.body.phone }],

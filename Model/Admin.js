@@ -13,18 +13,6 @@ const adminSchema = new Schema(
       trim: true,
       required: true,
     },
-   
-    phone: {
-      type: String,
-      trim: true,
-      minlength: 11,
-      maxlength: 14,
-      required: true
-    },
-    profilePic: {
-      type: String,
-      required: true
-    },
   
     password: {
       type: String,

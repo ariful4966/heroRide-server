@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express')
 const mongoose = require('mongoose');
 const fileUpload = require('express-fileupload')
@@ -5,7 +6,7 @@ const cors = require('cors')
 const fs = require('fs');
 const { riderCreateController, allRiderGetController } = require('./Controllers/riderRouter');
 const { allCustomerGetController, createNewCustomerController } = require('./Controllers/customerRouter');
-const { adminGetController, createNewAdmin } = require('./Controllers/AdminController');
+const { adminGetController, createNewAdmin, adminLoginCoroller } = require('./Controllers/AdminController');
 
 
 const app = express();
@@ -47,9 +48,7 @@ app.get("/", (req, res) => {
   app.get("/admin", adminGetController)
   
   app.post("/admin", createNewAdmin)
-  app.post("/admin/login", (req, res)=>{
-      console.log(req.body);
-})
+  app.post("/admin/login", adminLoginCoroller )
 
 
 app.listen(4000, ()=>{

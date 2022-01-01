@@ -1,4 +1,5 @@
 const Admin = require("../Model/Admin");
+const jwt = require('jsonwebtoken')
 
 module.exports.adminGetController = async (req, res) => {
   try {
@@ -73,3 +74,42 @@ module.exports.createNewAdmin = async (req, res) => {
     });
   }
 };
+
+module.exports.adminLoginCoroller = async(req, res)=>{
+    
+  try{
+    const extAdmin = Admin.findOne({email: req.body.email})
+      if(extAdmin){
+        extAdmin.then(result=>{
+          const genToken = {
+            name:result.name,
+            email:result.email
+          }
+         const token=  jwt.sign({
+            exp: Math.floor(Date.now() / 1000) + (60 * 60*12),
+            data: genToken
+          }, process.env.JWT_SECRET);
+  
+          res.send({
+            message: 'Successfully Login',
+            token: token
+          })
+        })
+        .catch(error=>{
+          res.send({
+            error: error.message
+          })
+        })
+       
+
+      }else{
+        res.send({
+          error: 'Sorry your are not valid user'
+        })
+      }
+  }catch (err) {
+    res.send({
+      error: err.message,
+    });
+  }
+}
