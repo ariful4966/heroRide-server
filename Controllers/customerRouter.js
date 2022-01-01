@@ -86,9 +86,8 @@ module.exports.createNewCustomerController = async (req, res) => {
 
 module.exports.customerLoginController = async (req, res) => {
   try {
-    const user = req.body;
-
-    const extCustomer = await Customer.findOne({ email: user.email });
+    
+    const extCustomer = await Customer.findOne({ email: req.body.email });
 
     if (extCustomer) {
       extCustomer.then((result) => {

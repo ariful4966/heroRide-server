@@ -4,8 +4,8 @@ const mongoose = require('mongoose');
 const fileUpload = require('express-fileupload')
 const cors = require('cors')
 const fs = require('fs');
-const { riderCreateController, allRiderGetController } = require('./Controllers/riderRouter');
-const { allCustomerGetController, createNewCustomerController } = require('./Controllers/customerRouter');
+const { riderCreateController, allRiderGetController, riderLoginController } = require('./Controllers/riderRouter');
+const { allCustomerGetController, createNewCustomerController, customerLoginController } = require('./Controllers/customerRouter');
 const { adminGetController, createNewAdmin, adminLoginCoroller } = require('./Controllers/AdminController');
 
 
@@ -32,20 +32,17 @@ mongoose.connect(MongoDB,()=>{
 app.get("/", (req, res) => {
     res.send("This is your home page");
   });
-  app.post('/rider', riderCreateController)
   app.get("/rider", allRiderGetController)
-  app.post("/rider/login",(req, res)=>{
-    console.log(req.body);
-  })
+  app.post('/rider', riderCreateController)
+ 
+  app.post("/rider/login", riderLoginController)
   
 
   
   
   app.get("/customer", allCustomerGetController)
   app.post("/customer", createNewCustomerController);
-  app.post("/customer/login", (req, res)=>{
-      console.log(req.body);
-})
+  app.post("/customer/login", customerLoginController)
   
   app.get("/admin", adminGetController)
   
